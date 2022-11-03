@@ -21,6 +21,10 @@ const Home: NextPage = () => {
     return <div>Loading...</div>;
   }
 
+  const voteForRoundest = (id: number) => {
+    updateIds(getOptionsForVote());
+  }
+
   return (
     <>
       <div className="h-screen w-screen flex flex-col justify-center items-center">
@@ -28,13 +32,15 @@ const Home: NextPage = () => {
         <div className="p-2"/>
         <div className="border rounded p-8 flex justify-between items-center max-w-2xl">
           <div className="w-64 h-64 flex flex-col">
-            <img src={firstPokemon.data?.sprites.front_default} className="w-full"/>
+            <img src={firstPokemon.data.image} className="w-full"/>
             <div className="text-xl text-center capitalize mt-[-2rem]">{firstPokemon.data?.name}</div>
+            <button onClick={() => voteForRoundest(first)} className="bg-blue-500 text-white rounded">Vote</button>
           </div>
           <div className="p-8">Vs</div>
           <div className="w-64 h-64 flex flex-col">
-            <img src={secondPokemon.data?.sprites.front_default} className="w-full"/>
+            <img src={secondPokemon.data.image} className="w-full"/>
             <div className="text-xl text-center capitalize mt-[-2rem]">{secondPokemon.data?.name}</div>
+            <button onClick={() => voteForRoundest(second)} className="bg-blue-500 text-white rounded">Vote</button>
           </div>
           <div className="p-2"/>
         </div>

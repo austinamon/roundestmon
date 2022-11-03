@@ -7,9 +7,10 @@ export const pokemonRouter = router({
     getPokemonById: publicProcedure
     //Accept number or undefined as input
     .input(z.number().optional())
-    .query(({ input }) => { 
+    .query(async ({ input }) => { 
         const pokemonClient = new PokemonClient();
-        return pokemonClient.getPokemonById(input ?? 1);
+        let pokemon = await pokemonClient.getPokemonById(input ?? 1)
+        return { name: pokemon.name, id: pokemon.id, image: pokemon.sprites.front_default };
     }),
 });
 
